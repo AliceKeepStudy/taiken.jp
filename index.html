@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>泰軒株式会社 | ITソリューション</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --gray: #94a3b8;
+      --blue: #00d4ff;
+      --dark: #1e293b;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 100px 0; }
+    h1, h2, h3 { font-weight: 700; }
+    a { color: var(--blue); text-decoration: none; }
+
+    /* Hero */
+    #hero { text-align: center; padding: 140px 0; }
+    #hero h1 { font-size: 56px; color: white; margin-bottom: 10px; }
+    #hero p { font-size: 24px; color: var(--gray); margin: 20px 0; }
+    .btn {
+      display: inline-block; padding: 14px 32px; margin: 10px;
+      border-radius: 8px; font-weight: 500; font-size: 16px;
+      transition: all 0.3s;
+    }
+    .btn-filled { background: var(--blue); color: #0f172a; }
+    .btn-outline { border: 2px solid var(--blue); color: var(--blue); }
+    .btn:hover { transform: translateY(-3px); }
+
+    /* About & Services */
+    .section-title { text-align: center; font-size: 32px; color: var(--blue); margin-bottom: 60px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .card {
+      background: var(--dark); padding: 40px; border-radius: 12px; text-align: center;
+    }
+    .card h3 { color: var(--blue); margin-bottom: 16px; }
+
+    /* Contact */
+    #contact { background: var(--dark); }
+    form { max-width: 600px; margin: 0 auto; display: grid; gap: 16px; }
+    input, textarea {
+      width: 100%; padding: 14px; border: 1px solid #475569; border-radius: 8px;
+      background: #334155; color: white; font-size: 16px;
+    }
+    button {
+      background: var(--blue); color: #0f172a; border: none; padding: 16px;
+      font-size: 16px; font-weight: 500; border-radius: 8px; cursor: pointer;
+    }
+
+    /* Footer */
+    footer { text-align: center; padding: 40px 0; color: #64748b; font-size: 14px; }
+
+    @media (max-width: 768px) {
+      #hero h1 { font-size: 40px; }
+      #hero p { font-size: 20px; }
+      section { padding: 80px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <h1>泰軒株式会社</h1>
+      <p>Taiken Co., Ltd.</p>
+      <p>効率的で信頼できるITパートナー<br><small>Your Reliable IT Solutions Partner</small></p>
+      <div>
+        <a href="#contact" class="btn btn-filled">無料相談</a>
+        <a href="#services" class="btn btn-outline">サービス ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">会社概要</h2>
+      <p style="text-align:center; max-width:700px; margin:0 auto 50px;">
+        2025年設立・日本拠点<br>
+        中小企業向けに「本当に使える・価格が明確な」ITソリューションを提供<br>
+        クラウド＋アジャイルで3〜6ヶ月で成果を出します
+      </p>
+      <div class="grid" style="justify-items:center; font-size:18px;">
+        <div>⚡ 業界平均より40%早く</div>
+        <div>💰 完全透明な料金</div>
+        <div>🛠 1週間でプロトタイプ</div>
+        <div>🌐 日英中3言語対応</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="background:var(--dark);">
+    <div class="container">
+      <h2 class="section-title">サービス内容</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>カスタムソフトウェア開発</h3>
+          <p>業務システム・Webアプリ・モバイルアプリ<br>React / Node.js / Python / Go 等</p>
+        </div>
+        <div class="card">
+          <h3>システム統合・クラウド移行</h3>
+          <p>AWS / Azure / GCP 公式認定エンジニア<br>旧システムの無痛クラウド化</p>
+        </div>
+        <div class="card">
+          <h3>サイバーセキュリティ</h3>
+          <p>ペネトレーションテスト・ゼロトラスト<br>24h監視で守る</p>
+        </div>
+        <div class="card">
+          <h3>データアナリティクス・AI</h3>
+          <p>Power BI / Tableau / 機械学習<br>データ活用支援</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">お問い合わせ</h2>
+      <p style="text-align:center; color:var(--gray); margin-bottom:40px;">
+        無料IT健診（30分オンライン相談）
+      </p>
+      <form action="https://formspree.io/f/YOUR_CODE" method="POST">
+        <input type="text" name="会社名" placeholder="会社名" required>
+        <input type="text" name="お名前" placeholder="お名前" required>
+        <input type="email" name="メール" placeholder="メールアドレス" required>
+        <input type="tel" name="電話" placeholder="電話番号（任意）">
+        <textarea name="メッセージ" rows="5" placeholder="ご相談内容" required></textarea>
+        <button type="submit">送信する</button>
+      </form>
+      <p style="text-align:center; margin-top:40px; color:var(--gray);">
+        📧 hello@taiken.co.jp<br>
+        📞 090-1234-5678
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 泰軒株式会社 Taiken Co., Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
