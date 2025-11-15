@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>泰軒株式会社 | ITソリューション</title>
+  <title id="page-title">泰軒株式会社 | ITソリューション</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -62,24 +62,46 @@
     /* Footer */
     footer { text-align: center; padding: 40px 0; color: #64748b; font-size: 14px; }
 
+    /* 语言切换按钮 */
+    .lang-switch {
+      position: fixed; top: 20px; right: 20px; z-index: 1000;
+    }
+    .lang-switch button {
+      background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 12px; margin: 0 4px; border-radius: 6px; font-size: 14px; cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lang-switch button.active {
+      background: var(--blue); color: #0f172a; font-weight: bold;
+    }
+
     @media (max-width: 768px) {
       #hero h1 { font-size: 40px; }
       #hero p { font-size: 20px; }
       section { padding: 80px 0; }
+      .lang-switch { top: 10px; right: 10px; }
+      .lang-switch button { padding: 6px 10px; font-size: 13px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- 语言切换按钮 -->
+  <div class="lang-switch">
+    <button onclick="setLang('ja')" class="active">JA</button>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('zh')">中文</button>
+  </div>
+
   <!-- Hero -->
   <section id="hero">
     <div class="container">
-      <h1>泰軒株式会社</h1>
-      <p>Taiken Co., Ltd.</p>
-      <p>効率的で信頼できるITパートナー<br><small>Your Reliable IT Solutions Partner</small></p>
+      <h1 id="hero-title">泰軒株式会社</h1>
+      <p id="hero-subtitle">Taiken Co., Ltd.</p>
+      <p id="hero-tagline">効率的で信頼できるITパートナー<br><small>Your Reliable IT Solutions Partner</small></p>
       <div>
-        <a href="#contact" class="btn btn-filled">無料相談</a>
-        <a href="#services" class="btn btn-outline">サービス ↓</a>
+        <a href="#contact" class="btn btn-filled" id="btn-consult">無料相談</a>
+        <a href="#services" class="btn btn-outline" id="btn-services">サービス ↓</a>
       </div>
     </div>
   </section>
@@ -87,41 +109,32 @@
   <!-- About -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title">会社概要</h2>
-      <p style="text-align:center; max-width:700px; margin:0 auto 50px;">
-        2025年設立・日本拠点<br>
-        中小企業向けに「本当に使える・価格が明確な」ITソリューションを提供<br>
-        クラウド＋アジャイルで3〜6ヶ月で成果を出します
-      </p>
-      <div class="grid" style="justify-items:center; font-size:18px;">
-        <div>⚡ 業界平均より40%早く</div>
-        <div>💰 完全透明な料金</div>
-        <div>🛠 1週間でプロトタイプ</div>
-        <div>🌐 日英中3言語対応</div>
-      </div>
+      <h2 class="section-title" id="about-title">会社概要</h2>
+      <p id="about-text" style="text-align:center; max-width:700px; margin:0 auto 50px;"></p>
+      <div class="grid" id="about-items" style="justify-items:center; font-size:18px;"></div>
     </div>
   </section>
 
   <!-- Services -->
   <section id="services" style="background:var(--dark);">
     <div class="container">
-      <h2 class="section-title">サービス内容</h2>
+      <h2 class="section-title" id="services-title">サービス内容</h2>
       <div class="grid">
         <div class="card">
-          <h3>カスタムソフトウェア開発</h3>
-          <p>業務システム・Webアプリ・モバイルアプリ<br>React / Node.js / Python / Go 等</p>
+          <h3 id="service1-title">カスタムソフトウェア開発</h3>
+          <p id="service1-desc">業務システム・Webアプリ・モバイルアプリ<br>React / Node.js / Python / Go 等</p>
         </div>
         <div class="card">
-          <h3>システム統合・クラウド移行</h3>
-          <p>AWS / Azure / GCP 公式認定エンジニア<br>旧システムの無痛クラウド化</p>
+          <h3 id="service2-title">システム統合・クラウド移行</h3>
+          <p id="service2-desc">AWS / Azure / GCP 公式認定エンジニア<br>旧システムの無痛クラウド化</p>
         </div>
         <div class="card">
-          <h3>サイバーセキュリティ</h3>
-          <p>ペネトレーションテスト・ゼロトラスト<br>24h監視で守る</p>
+          <h3 id="service3-title">サイバーセキュリティ</h3>
+          <p id="service3-desc">ペネトレーションテスト・ゼロトラスト<br>24h監視で守る</p>
         </div>
         <div class="card">
-          <h3>データアナリティクス・AI</h3>
-          <p>Power BI / Tableau / 機械学習<br>データ活用支援</p>
+          <h3 id="service4-title">データアナリティクス・AI</h3>
+          <p id="service4-desc">Power BI / Tableau / 機械学習<br>データ活用支援</p>
         </div>
       </div>
     </div>
@@ -130,8 +143,8 @@
   <!-- Contact -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">お問い合わせ</h2>
-      <p style="text-align:center; color:var(--gray); margin-bottom:40px;">
+      <h2 class="section-title" id="contact-title">お問い合わせ</h2>
+      <p id="contact-sub" style="text-align:center; color:var(--gray); margin-bottom:40px;">
         無料IT健診（30分オンライン相談）
       </p>
       <form action="https://formspree.io/f/xyzlerqz" method="POST">
@@ -143,8 +156,8 @@
         <button type="submit">送信する</button>
       </form>
       <p style="text-align:center; margin-top:40px; color:var(--gray);">
-        📧 alice@taiken.co.jp<br>
-        📞 090-9373-8529
+        <span id="contact-email">alice@taiken.co.jp</span><br>
+        <span id="contact-phone">090-9373-8529</span>
       </p>
     </div>
   </section>
@@ -152,10 +165,136 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© 2025 泰軒株式会社 Taiken Co., Ltd. All rights reserved.</p>
+      <p id="footer-text">© 2025 泰軒株式会社 Taiken Co., Ltd. All rights reserved.</p>
     </div>
   </footer>
 
-</body>
+  <!-- 多语言内容 + 切换逻辑 -->
+  <script>
+    const translations = {
+      ja: {
+        title: "泰軒株式会社",
+        subtitle: "Taiken Co., Ltd.",
+        tagline: "効率的で信頼できるITパートナー<br><small>Your Reliable IT Solutions Partner</small>",
+        btn1: "無料相談",
+        btn2: "サービス ↓",
+        about_title: "会社概要",
+        about_text: "2025年設立・日本拠点<br>中小企業向けに「本当に使える・価格が明確な」ITソリューションを提供<br>クラウド＋アジャイルで3〜6ヶ月で成果を出します",
+        about_items: ["業界平均より40%早く", "完全透明な料金", "1週間でプロトタイプ", "日英中3言語対応"],
+        services_title: "サービス内容",
+        service1_title: "カスタムソフトウェア開発",
+        service1_desc: "業務システム・Webアプリ・モバイルアプリ<br>React / Node.js / Python / Go 等",
+        service2_title: "システム統合・クラウド移行",
+        service2_desc: "AWS / Azure / GCP 公式認定エンジニア<br>旧システムの無痛クラウド化",
+        service3_title: "サイバーセキュリティ",
+        service3_desc: "ペネトレーションテスト・ゼロトラスト<br>24h監視で守る",
+        service4_title: "データアナリティクス・AI",
+        service4_desc: "Power BI / Tableau / 機械学習<br>データ活用支援",
+        contact_title: "お問い合わせ",
+        contact_sub: "無料IT健診（30分オンライン相談）",
+        contact_email: "alice@taiken.co.jp",
+        contact_phone: "090-9373-8529",
+        footer: "© 2025 泰軒株式会社 Taiken Co., Ltd. All rights reserved."
+      },
+      en: {
+        title: "Taiken Co., Ltd.",
+        subtitle: "Professional IT Solutions",
+        tagline: "Efficient & Reliable IT Partner<br><small>Your Trusted Tech Ally</small>",
+        btn1: "Free Consultation",
+        btn2: "Services ↓",
+        about_title: "About Us",
+        about_text: "Founded 2025 · Japan-based<br>Practical, transparent IT for SMEs<br>Cloud + Agile: Results in 3-6 months",
+        about_items: ["40% faster than average", "Fully transparent pricing", "Prototype in 1 week", "JA/EN/ZH support"],
+        services_title: "Our Services",
+        service1_title: "Custom Software",
+        service1_desc: "Business systems · Web · Mobile<br>React / Node.js / Python / Go",
+        service2_title: "Cloud Migration",
+        service2_desc: "AWS / Azure / GCP certified<br>Painless legacy migration",
+        service3_title: "Cybersecurity",
+        service3_desc: "Pen testing · Zero Trust<br>24/7 protection",
+        service4_title: "Data & AI",
+        service4_desc: "Power BI / Tableau / ML<br>Data-driven insights",
+        contact_title: "Contact Us",
+        contact_sub: "Free 30-min IT Check",
+        contact_email: "alice@taiken.co.jp",
+        contact_phone: "+81 90-9373-8529",
+        footer: "© 2025 Taiken Co., Ltd. All rights reserved."
+      },
+      zh: {
+        title: "泰轩株式会社",
+        subtitle: "专业IT解决方案",
+        tagline: "高效可靠的IT合作伙伴<br><small>Your Trusted IT Partner</small>",
+        btn1: "免费咨询",
+        btn2: "服务 ↓",
+        about_title: "公司简介",
+        about_text: "2025年成立 · 日本总部<br>为中小企业提供「真正好用·价格透明」的IT方案<br>云+敏捷，3-6个月见效",
+        about_items: ["比行业快40%", "完全透明定价", "1周出原型", "中日英支持"],
+        services_title: "服务内容",
+        service1_title: "定制软件开发",
+        service1_desc: "业务系统·Web·移动应用<br>React / Node.js / Python / Go",
+        service2_title: "系统集成·云迁移",
+        service2_desc: "AWS / Azure / GCP 认证<br>无痛迁移老系统",
+        service3_title: "网络安全",
+        service3_desc: "渗透测试·零信任<br>24小时防护",
+        service4_title: "数据分析·AI",
+        service4_desc: "Power BI / Tableau / 机器学习<br>数据驱动决策",
+        contact_title: "联系我们",
+        contact_sub: "免费IT体检（30分钟在线）",
+        contact_email: "alice@taiken.co.jp",
+        contact_phone: "090-9373-8529",
+        footer: "© 2025 泰轩株式会社 版权所有"
+      }
+    };
 
+    function setLang(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+      document.getElementById('page-title').textContent = t.title + " | IT Solutions";
+
+      document.getElementById('hero-title').textContent = t.title;
+      document.getElementById('hero-subtitle').textContent = t.subtitle;
+      document.getElementById('hero-tagline').innerHTML = t.tagline;
+      document.getElementById('btn-consult').textContent = t.btn1;
+      document.getElementById('btn-services').textContent = t.btn2;
+
+      document.getElementById('about-title').textContent = t.about_title;
+      document.getElementById('about-text').innerHTML = t.about_text.replace(/\n/g, '<br>');
+      const items = document.getElementById('about-items');
+      items.innerHTML = '';
+      t.about_items.forEach(item => {
+        const div = document.createElement('div');
+        div.textContent = item;
+        items.appendChild(div);
+      });
+
+      document.getElementById('services-title').textContent = t.services_title;
+      document.getElementById('service1-title').textContent = t.service1_title;
+      document.getElementById('service1-desc').innerHTML = t.service1_desc.replace(/\n/g, '<br>');
+      document.getElementById('service2-title').textContent = t.service2_title;
+      document.getElementById('service2-desc').innerHTML = t.service2_desc.replace(/\n/g, '<br>');
+      document.getElementById('service3-title').textContent = t.service3_title;
+      document.getElementById('service3-desc').innerHTML = t.service3_desc.replace(/\n/g, '<br>');
+      document.getElementById('service4-title').textContent = t.service4_title;
+      document.getElementById('service4-desc').innerHTML = t.service4_desc.replace(/\n/g, '<br>');
+
+      document.getElementById('contact-title').textContent = t.contact_title;
+      document.getElementById('contact-sub').textContent = t.contact_sub;
+      document.getElementById('contact-email').textContent = t.contact_email;
+      document.getElementById('contact-phone').textContent = t.contact_phone;
+      document.getElementById('footer-text').textContent = t.footer;
+
+      document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.onclick.toString().includes(`'${lang}'`));
+      });
+
+      localStorage.setItem('lang', lang);
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('lang') || 'ja';
+      setLang(saved);
+    };
+  </script>
+
+</body>
 </html>
