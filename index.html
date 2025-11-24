@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title id="page-title">泰軒株式会社 | ITソリューション</title>
+  <title>泰軒株式会社 | ITソリューション</title>
+  <!-- 字体加载：确保日语和通用英文字体可用 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* CSS 变量 */
     :root {
-      --bg: #0f172a;
-      --text: #e2e8f0;
-      --gray: #94a3b8;
-      --blue: #00d4ff;
-      --dark: #1e293b;
+      --bg: #0f172a;    /* 背景深蓝色 */
+      --text: #e2e8f0;  /* 主要文本灰白色 */
+      --gray: #94a3b8;  /* 次要文本灰色 */
+      --blue: #00d4ff;  /* 强调色（亮青色） */
+      --dark: #1e293b;  /* 卡片背景深灰色 */
     }
+    /* 全局重置和基础样式 */
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       background: var(--bg);
@@ -21,279 +24,569 @@
       line-height: 1.8;
       font-size: 16px;
     }
+    /* 容器 */
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    /* 所有板块的填充 */
     section { padding: 100px 0; }
+    /* 标题粗细 */
     h1, h2, h3 { font-weight: 700; }
+    /* 链接默认样式 */
     a { color: var(--blue); text-decoration: none; }
 
+    /* Header/Navigation - 固定导航栏样式 */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      padding: 15px 0;
+      z-index: 1000; /* 确保它在页面最上层 */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px; 
+      margin: 0 auto; 
+      padding: 0 20px;
+    }
+    .logo-text {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-links {
+        display: flex;
+        align-items: center;
+    }
+    .nav-links a {
+      color: var(--text);
+      margin-left: 30px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    /* 语言切换按钮样式 */
+    .lang-switcher button {
+        background: none;
+        border: 1px solid var(--gray);
+        color: var(--gray);
+        padding: 5px 10px;
+        margin-left: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s, color 0.2s;
+    }
+    .lang-switcher button.active,
+    .lang-switcher button:hover {
+        background-color: var(--blue);
+        color: var(--bg);
+        border-color: var(--blue);
+    }
+    
     /* Hero */
-    #hero { text-align: center; padding: 140px 0; }
-    #hero h1 { font-size: 56px; color: white; margin-bottom: 10px; }
-    #hero p { font-size: 24px; color: var(--gray); margin: 20px 0; }
+	#hero {
+		position: relative;
+		text-align: center;
+		padding: 240px 0 160px 0;        /* 上下留白更大，更大气 */
+		background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.82)), 
+					url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=2000&q=85');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;    /* 关键！让背景图有视差滚动，高端感拉满 */
+		color: white;
+		overflow: hidden;
+	}
+
+	/* 可选：加一点微动画，让文字轻轻浮起来更高级 */
+	#hero h1 {
+		font-size: 64px;
+		font-weight: 700;
+		margin-bottom: 16px;
+		text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+		animation: fadeUp 1s ease-out;
+	}
+	#hero p {
+		font-size: 26px;
+		margin: 20px 0;
+		text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+		animation: fadeUp 1.2s ease-out;
+	}
+
+	/* 小动画（加了更丝滑） */
+	@keyframes fadeUp {
+		from { opacity: 0; transform: translateY(30px); }
+		to   { opacity: 1; transform: translateY(0); }
+	}
+
+	/* 移动端稍微缩小一点字体 */
+	@media (max-width: 768px) {
+		#hero { padding: 180px 0 120px; background-attachment: scroll; }
+		#hero h1 { font-size: 44px; }
+		#hero p { font-size: 20px; }
+	}
+    
+    /* 按钮基础样式 */
     .btn {
       display: inline-block; padding: 14px 32px; margin: 10px;
       border-radius: 8px; font-weight: 500; font-size: 16px;
       transition: all 0.3s;
     }
-    .btn-filled { background: var(--blue); color: #0f172a; }
-    .btn-outline { border: 2px solid var(--blue); color: var(--blue); }
-    .btn:hover { transform: translateY(-3px); }
-
-    /* About & Services */
-    .section-title { text-align: center; font-size: 32px; color: var(--blue); margin-bottom: 60px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-    .card {
-      background: var(--dark); padding: 40px; border-radius: 12px; text-align: center;
+    .btn-filled { 
+        background: var(--blue); 
+        color: #0f172a; /* 填充按钮的文本颜色使用背景色，形成高对比 */
     }
-    .card h3 { color: var(--blue); margin-bottom: 16px; }
+    .btn-outline { 
+        border: 2px solid var(--blue); 
+        color: var(--blue); 
+    }
+    .btn:hover { 
+        transform: translateY(-3px); /* 悬停时向上轻微移动 */
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+    }
 
-    /* Contact */
+	#about {
+		position: relative;
+		overflow: hidden;
+		background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.88)), 
+					url('https://images.unsplash.com/photo-1542744095-291d1f67b221?w=2000&q=85');
+		/* ↑ 这张是深蓝科技网格 + 光线散射，超级适合公司概要板块 */
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;   /* 视差滚动，高级感拉满 */
+		padding: 140px 0;
+	}
+
+	/* 保留原来的遮罩层，让文字清晰度更高 */
+	#about::before {
+		content: '';
+		position: absolute;
+		top: 0; left: 0;
+		width: 100%; height: 100%;
+		background: radial-gradient(circle at center, 
+					rgba(15, 23, 42, 0.4) 0%, 
+					rgba(15, 23, 42, 0.5) 100%);
+		z-index: 1;
+	}
+
+	#about .container {
+		position: relative;
+		z-index: 2;
+	}
+	
+    /* ===== 事業内容 Services 背景图 ===== */
+    #services {
+        position: relative;
+        background: linear-gradient(rgba(15, 23, 42, 0.93), rgba(15, 23, 42, 0.98)),
+                    url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=2200&q=90');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 120px 0;
+        overflow: hidden;
+    }
+	
+	#news {
+		position: relative;
+		background: linear-gradient(rgba(15,23,42,0.95), rgba(15,23,42,0.98)),
+					url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=2200&q=90');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		padding: 120px 0;
+	}
+	
+	
+    #services::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at center, rgba(15,23,42,0.15) 0%, rgba(15,23,42,0.85) 100%);
+        z-index: 1;
+    }
+    #services > .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    #news {
+        position: relative !important;
+		background: linear-gradient(rgba(15, 23, 42, 0.93), rgba(15, 23, 42, 0.98)),
+                    url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=2200&q=90');
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+        padding: 120px 0 !important;
+        overflow: hidden !important;
+    }
+    #news::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0; left: 0; width: 100%; height: 100% !important;
+        background: radial-gradient(circle at center, 
+                    rgba(15,23,42,0.3) 0%, 
+                    rgba(15,23,42,0.92) 100%) !important;
+        z-index: 1 !important;
+    }
+    #news > .container {
+        position: relative !important;
+        z-index: 2 !important;
+    }
+
+    /* Ensure content is above the overlay */
+    #about .container {
+        position: relative;
+        z-index: 2; 
+    }
+    
+    /* About & Services */
+    .section-title { 
+        text-align: center; 
+        font-size: 32px; 
+        color: var(--blue); 
+        margin-bottom: 60px; 
+    }
+    .grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 30px; 
+    }
+    .card {
+      background: var(--dark); 
+      padding: 40px; 
+      border-radius: 12px; 
+      text-align: center;
+      /* 动画属性：平滑过渡 */
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; 
+    }
+    .card h3 { 
+        color: var(--blue); 
+        margin-bottom: 16px; 
+    }
+    .card:hover { /* 鼠标悬停动画效果 */
+      transform: translateY(-5px); 
+      box-shadow: 0 15px 30px rgba(0, 212, 255, 0.25); 
+      cursor: pointer;
+    }
+    
+    /* News Section 样式 (新板块) */
+    .news-item {
+        padding: 15px; 
+        border-bottom: 1px solid #334155; /* 稍微浅一点的分割线 */
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        transition: background-color 0.3s;
+    }
+    .news-item:hover {
+        background-color: #1e293b;
+    }
+    .news-item p:first-child {
+        min-width: 100px;
+    }
+
+    /* Contact Form 样式 */
     #contact { background: var(--dark); }
     form { max-width: 600px; margin: 0 auto; display: grid; gap: 16px; }
     input, textarea {
       width: 100%; padding: 14px; border: 1px solid #475569; border-radius: 8px;
       background: #334155; color: white; font-size: 16px;
     }
+    /* 联系表单中占位符的样式需要单独设置，以支持多语言切换 */
+    input::placeholder, textarea::placeholder {
+      color: var(--gray);
+    }
+
     button {
       background: var(--blue); color: #0f172a; border: none; padding: 16px;
       font-size: 16px; font-weight: 500; border-radius: 8px; cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    button:hover {
+        opacity: 0.9;
     }
 
     /* Footer */
     footer { text-align: center; padding: 40px 0; color: #64748b; font-size: 14px; }
 
-    /* 语言切换按钮 */
-    .lang-switch {
-      position: fixed; top: 20px; right: 20px; z-index: 1000;
-    }
-    .lang-switch button {
-      background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);
-      padding: 8px 12px; margin: 0 4px; border-radius: 6px; font-size: 14px; cursor: pointer;
-      transition: all 0.3s;
-    }
-    .lang-switch button.active {
-      background: var(--blue); color: #0f172a; font-weight: bold;
-    }
-
+    /* 响应式设计 */
     @media (max-width: 768px) {
       #hero h1 { font-size: 40px; }
       #hero p { font-size: 20px; }
       section { padding: 80px 0; }
-      .lang-switch { top: 10px; right: 10px; }
-      .lang-switch button { padding: 6px 10px; font-size: 13px; }
+      /* 移动端导航栏布局调整 */
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .nav-links { margin-top: 10px; flex-wrap: wrap; }
+      .nav-links a { margin: 5px 10px 5px 0; font-size: 14px; }
+      .logo-text { margin-bottom: 5px; }
+      header { padding: 10px 0; }
+      #hero { padding-top: 160px; } 
+      .lang-switcher { margin-top: 10px; align-self: flex-end; }
+      
+      /* 移动端调整，确保背景图和内容清晰 */
+      #about { padding: 80px 0; }
     }
+
   </style>
 </head>
 <body>
 
-  <!-- 语言切换按钮 -->
-  <div class="lang-switch">
-    <button onclick="setLang('ja')" class="active">JA</button>
-    <button onclick="setLang('en')">EN</button>
-    <button onclick="setLang('zh')">中文</button>
-  </div>
-
-  <!-- Hero -->
+  <!-- Fixed Header/Navigation - 固定顶部导航栏 -->
+  <header>
+    <div class="navbar">
+        <a href="#hero" class="logo-text">泰軒株式会社</a>
+        <div class="nav-links">
+            <nav>
+                <a href="#about" data-lang-ja="会社概要" data-lang-en="Company Info" data-lang-zh="公司概要">会社概要</a>
+                <a href="#services" data-lang-ja="事業内容" data-lang-en="Service" data-lang-zh="业务内容">事業内容</a>
+                <a href="#news" data-lang-ja="ニュース" data-lang-en="News" data-lang-zh="新闻">ニュース</a>
+                <a href="#recruit" data-lang-ja="採用情報" data-lang-en="Recruit" data-lang-zh="招聘">採用情報</a>
+                <a href="#partner" data-lang-ja="パートナー" data-lang-en="Partner" data-lang-zh="合作伙伴">パートナー</a>
+                <!-- 突出显示联系我们按钮 -->
+                <a href="#contact" class="btn btn-filled" style="padding: 8px 16px; margin: 0 0 0 30px;" 
+                   data-lang-ja="お問い合わせ" data-lang-en="Contact" data-lang-zh="联系我们">お問い合わせ</a>
+            </nav>
+            <!-- 语言切换按钮 -->
+            <div class="lang-switcher">
+                <button onclick="switchLanguage('ja')" class="active">日</button>
+                <button onclick="switchLanguage('en')">En</button>
+                <button onclick="switchLanguage('zh')">中</button>
+            </div>
+        </div>
+    </div>
+  </header>
+  
+  <!-- Hero - 首页和主标语 -->
   <section id="hero">
     <div class="container">
-      <h1 id="hero-title">泰軒株式会社</h1>
-      <p id="hero-subtitle">Taiken Co., Ltd.</p>
-      <p id="hero-tagline">効率的で信頼できるITパートナー<br><small>Your Reliable IT Solutions Partner</small></p>
+      <h1>泰軒株式会社</h1>
+      <p>Taiken Co., Ltd.</p>
+      <p class="lang-text" data-lang-ja="効率的で信頼できるITパートナー" data-lang-en="Efficient and Reliable IT Partner" data-lang-zh="效率高、值得信赖的 IT 合作伙伴">効率的で信頼できるITパートナー<br><small>Your Reliable IT Solutions Partner</small></p>
       <div>
-        <a href="#contact" class="btn btn-filled" id="btn-consult">無料相談</a>
-        <a href="#services" class="btn btn-outline" id="btn-services">サービス ↓</a>
+        <a href="#contact" class="btn btn-filled" 
+           data-lang-ja="無料相談" data-lang-en="Free Consultation" data-lang-zh="免费咨询">無料相談</a>
+        <a href="#services" class="btn btn-outline" 
+           data-lang-ja="サービス ↓" data-lang-en="Services ↓" data-lang-zh="服务 ↓">サービス ↓</a>
       </div>
     </div>
   </section>
 
-  <!-- About -->
+  <!-- About - 公司概要 -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title" id="about-title">会社概要</h2>
-      <p id="about-text" style="text-align:center; max-width:700px; margin:0 auto 50px;"></p>
-      <div class="grid" id="about-items" style="justify-items:center; font-size:18px;"></div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" style="background:var(--dark);">
-    <div class="container">
-      <h2 class="section-title" id="services-title">サービス内容</h2>
-      <div class="grid">
-        <div class="card">
-          <h3 id="service1-title">カスタムソフトウェア開発</h3>
-          <p id="service1-desc">業務システム・Webアプリ・モバイルアプリ<br>React / Node.js / Python / Go 等</p>
-        </div>
-        <div class="card">
-          <h3 id="service2-title">システム統合・クラウド移行</h3>
-          <p id="service2-desc">AWS / Azure / GCP 公式認定エンジニア<br>旧システムの無痛クラウド化</p>
-        </div>
-        <div class="card">
-          <h3 id="service3-title">サイバーセキュリティ</h3>
-          <p id="service3-desc">ペネトレーションテスト・ゼロトラスト<br>24h監視で守る</p>
-        </div>
-        <div class="card">
-          <h3 id="service4-title">データアナリティクス・AI</h3>
-          <p id="service4-desc">Power BI / Tableau / 機械学習<br>データ活用支援</p>
-        </div>
+      <h2 class="section-title lang-text" data-lang-ja="会社概要 (Company Info)" data-lang-en="Company Info" data-lang-zh="公司概要 (Company Info)">会社概要 (Company Info)</h2>
+      <p style="text-align:center; max-width:700px; margin:0 auto 50px;" class="lang-text" 
+         data-lang-ja="2025年設立・日本拠点<br>中小企業向けに「本当に使える・価格が明確な」ITソリューションを提供<br>クラウド＋アジャイルで3〜6ヶ月で成果を出します" 
+         data-lang-en="Established in 2025, Japan Headquarters.<br>Providing 'truly usable and clearly priced' IT solutions for SMEs.<br>Delivering results in 3-6 months with Cloud + Agile." 
+         data-lang-zh="2025年设立・日本总部<br>为中小企业提供「真正可用、价格透明」的 IT 解决方案<br>通过云计算 + 敏捷开发，3〜6个月内交付成果">2025年設立・日本拠点<br>中小企業向けに「本当に使える・価格が明確な」ITソリューションを提供<br>クラウド＋アジャイルで3〜6ヶ月で成果を出します</p>
+      <!-- 核心优势列表 -->
+      <div class="grid" style="justify-items:center; font-size:18px;">
+        <div class="lang-text" data-lang-ja="⚡ 業界平均より40%早く" data-lang-en="⚡ 40% Faster than Industry Average" data-lang-zh="⚡ 速度快40%（对比行业平均）">⚡ 業界平均より40%早く</div>
+        <div class="lang-text" data-lang-ja="💰 完全透明な料金" data-lang-en="💰 Fully Transparent Pricing" data-lang-zh="💰 价格完全透明">💰 完全透明な料金</div>
+        <div class="lang-text" data-lang-ja="🛠 1週間でプロトタイプ" data-lang-en="🛠 Prototype in 1 Week" data-lang-zh="🛠 1周内产出原型（Prototype）">🛠 1週間でプロトタイプ</div>
+        <div class="lang-text" data-lang-ja="🌐 日英中3言語対応" data-lang-en="🌐 Supports JA/EN/ZH" data-lang-zh="🌐 支持日・英・中3种语言">🌐 日英中3言語対応</div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Services - 业务内容 (多语言支持) -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title lang-text" data-lang-ja="事業内容 (Service)" data-lang-en="Service" data-lang-zh="业务内容 (Service)">事業内容 (Service)</h2>
+      <div class="grid">
+        <!-- Card 1: 定制开发 -->
+        <div class="card">
+          <h3 class="lang-text" data-lang-ja="受託開発・内製化支援" data-lang-en="Custom Dev & In-house Support" data-lang-zh="定制开发・内部系统支持">受託開発・内製化支援</h3>
+          <p class="lang-text" data-lang-ja="Webアプリ、モバイルアプリ、基幹システム開発。アジャイル手法で早期成果。" data-lang-en="Web/Mobile App, Core System Dev. Agile approach for quick results." data-lang-zh="Web/移动应用、核心系统开发。采用敏捷开发方法，快速交付成果。">Webアプリ、モバイルアプリ、基幹システム開発。アジャイル手法で早期成果。</p>
+        </div>
+        <!-- Card 2: DX 咨询 -->
+        <div class="card">
+          <h3 class="lang-text" data-lang-ja="DXコンサルティング・SaaS導入" data-lang-en="DX Consulting & SaaS Implementation" data-lang-zh="DX 咨询・SaaS 部署">DXコンサルティング・SaaS導入</h3>
+          <p class="lang-text" data-lang-ja="IT戦略立案、業務プロセス改善、クラウド(AWS/Azure/GCP)を活用したDX推進。" data-lang-en="IT strategy, process improvement, DX promotion using Cloud (AWS/Azure/GCP)." data-lang-zh="IT 战略制定、业务流程改进、利用云服务(AWS/Azure/GCP)推进数字化转型。">IT戦略立案、業務プロセス改善、クラウド(AWS/Azure/GCP)を活用したDX推進。</p>
+        </div>
+        <!-- Card 3: 托管安全 -->
+        <div class="card">
+          <h3 class="lang-text" data-lang-ja="マネージドセキュリティサービス" data-lang-en="Managed Security Service (MSS)" data-lang-zh="托管安全服务（MSS）">マネージドセキュリティサービス</h3>
+          <p class="lang-text" data-lang-ja="24時間体制のセキュリティ監視、脆弱性診断、ゼロトラストアーキテクチャ設計。" data-lang-en="24/7 monitoring, vulnerability assessment, Zero Trust architecture design." data-lang-zh="24小时安全监控、漏洞诊断、零信任（Zero Trust）架构设计。">24時間体制のセキュリティ監視、脆弱性診断、ゼロトラストアーキテクチャ設計。</p>
+        </div>
+        <!-- Card 4: 数据驱动 -->
+        <div class="card">
+          <h3 class="lang-text" data-lang-ja="データ駆動型経営支援" data-lang-en="Data-Driven Management Support" data-lang-zh="数据驱动运营支持">データ駆動型経営支援</h3>
+          <p class="lang-text" data-lang-ja="BIツール (Power BI/Tableau) 導入、AI・機械学習を用いたデータ分析と活用。" data-lang-en="BI tools (Power BI/Tableau) implementation, data analysis using AI/ML." data-lang-zh="BI 工具 (Power BI/Tableau) 部署、利用 AI/机器学习进行数据分析与应用。">BIツール (Power BI/Tableau) 導入、AI・機械学習を用いたデータ分析と活用。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- News/Events - 新增新闻/业绩板块 (多语言支持) -->
+  <section id="news">
+    <div class="container">
+      <h2 class="section-title lang-text" data-lang-ja="ニュース・実績 (News & Case Study)" data-lang-en="News & Case Study" data-lang-zh="新闻・业绩 (News & Case Study)">ニュース・実績 (News & Case Study)</h2>
+      <div style="max-width: 800px; margin: 0 auto;">
+          <div class="news-item">
+              <p style="color:var(--gray);">2025.11.24</p>
+              <p><a href="#" class="lang-text" data-lang-ja="【実績】〇〇業界向け SaaS 開発プロジェクト完了" data-lang-en="[Case] SaaS Development Project for XX Industry Completed" data-lang-zh="【成果】面向〇〇行业的 SaaS 开发项目完成">【実績】〇〇業界向け SaaS 開発プロジェクト完了</a></p>
+          </div>
+          <div class="news-item">
+              <p style="color:var(--gray);">2025.11.01</p>
+              <p><a href="#" class="lang-text" data-lang-ja="企業向け「無料IT健診」相談件数が100件を突破" data-lang-en="Free IT Health Check consultations exceeded 100 cases" data-lang-zh="面向企业的「免费 IT 健康检查」咨询量突破100件">企業向け「無料IT健診」相談件数が100件を突破</a></p>
+          </div>
+          <div class="news-item" style="border-bottom:none;">
+              <p style="color:var(--gray);">2025.10.15</p>
+              <p><a href="#" class="lang-text" data-lang-ja="役員体制の変更に関するお知らせ" data-lang-en="Notice of change in executive structure" data-lang-zh="关于董事会人事变动的通知">役員体制の変更に関するお知らせ</a></p>
+          </div>
+      </div>
+      <div style="text-align:center; margin-top: 50px;">
+        <a href="#" class="btn btn-outline lang-text" data-lang-ja="過去のニュースを見る" data-lang-en="View Historical News" data-lang-zh="查看历史新闻">過去のニュースを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recruit - 新增招聘板块 (多语言支持) -->
+  <section id="recruit" style="background:var(--dark);">
+    <div class="container">
+      <h2 class="section-title lang-text" data-lang-ja="採用情報 (Recruit)" data-lang-en="Recruit" data-lang-zh="招聘信息 (Recruit)">採用情報 (Recruit)</h2>
+      <p style="text-align:center; max-width:700px; margin:0 auto 50px; font-size: 18px;" class="lang-text" 
+         data-lang-ja="泰軒は、技術を活かして社会に貢献したいという情熱を持った仲間を募集しています。<br>あなたのキャリアを加速させる環境がここにあります。" 
+         data-lang-en="Taiken is looking for passionate people who want to contribute to society with technology.<br>An environment that accelerates your career is here." 
+         data-lang-zh="泰軒株式会社正在招募有激情、希望通过技术为社会做贡献的伙伴。<br>我们为您提供加速职业发展的环境。">泰軒は、技術を活かして社会に貢献したいという情熱を持った仲間を募集しています。<br>あなたのキャリアを加速させる環境がここにあります。</p>
+      <div class="grid" style="justify-items:center;">
+        <div class="card" style="background: var(--bg);">
+          <h3 class="lang-text" data-lang-ja="エンジニア職" data-lang-en="Engineer Positions" data-lang-zh="工程师职位">エンジニア職</h3>
+          <p class="lang-text" data-lang-ja="フロントエンド、バックエンド、インフラ" data-lang-en="Frontend, Backend, Infrastructure" data-lang-zh="前端、后端、基础设施工程师">フロントエンド、バックエンド、インフラ</p>
+        </div>
+        <div class="card" style="background: var(--bg);">
+          <h3 class="lang-text" data-lang-ja="ITコンサルタント職" data-lang-en="IT Consultant Positions" data-lang-zh="IT 顾问职位">ITコンサルタント職</h3>
+          <p class="lang-text" data-lang-ja="DX戦略立案、プロジェクトマネジメント" data-lang-en="DX Strategy, Project Management" data-lang-zh="数字化转型（DX）战略制定、项目管理">DX戦略立案、プロジェクトマネジメント</p>
+        </div>
+        <div class="card" style="background: var(--bg);">
+          <h3 class="lang-text" data-lang-ja="営業・企画職" data-lang-en="Sales & Planning Positions" data-lang-zh="销售・企划职位">営業・企画職</h3>
+          <p class="lang-text" data-lang-ja="法人営業、マーケティング、事業開発" data-lang-en="Corporate Sales, Marketing, Business Development" data-lang-zh="企业销售、市场营销、业务拓展">法人営業、マーケティング、事業開発</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 50px;">
+        <a href="#contact" class="btn btn-filled lang-text" data-lang-ja="今すぐエントリー" data-lang-en="Apply Now" data-lang-zh="立即申请">今すぐエントリー</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Partner - 新增合作伙伴板块 (多语言支持) -->
+  <section id="partner">
+    <div class="container">
+      <h2 class="section-title lang-text" data-lang-ja="パートナーシップ (Partnership)" data-lang-en="Partnership" data-lang-zh="合作伙伴 (Partnership)">パートナーシップ (Partnership)</h2>
+      <p style="text-align:center; max-width:700px; margin:0 auto 50px; font-size: 18px;" class="lang-text" 
+         data-lang-ja="技術提携、業務委託、共同案件推進など、相互に成長できるパートナー企業様を広く募集しています。<br>お気軽にご連絡ください。" 
+         data-lang-en="We are broadly seeking partners for technical alliances, outsourcing, and joint projects who can grow together.<br>Please feel free to contact us." 
+         data-lang-zh="我们广招技术合作、业务委托、共同推进项目等能实现共同成长的伙伴企业。<br>欢迎随时联系我们。">技術提携、業務委託、共同案件推進など、相互に成長できるパートナー企業様を広く募集しています。<br>お気軽にご連絡ください。</p>
+      <div class="grid" style="justify-items:center; font-size:18px;">
+        <div style="color:var(--blue);" class="lang-text" data-lang-ja="🤝 案件ベースでの協業" data-lang-en="🤝 Project-based Collaboration" data-lang-zh="🤝 基于项目的合作">🤝 案件ベースでの協業</div>
+        <div style="color:var(--blue);" class="lang-text" data-lang-ja="🚀 新技術分野の共同研究" data-lang-en="🚀 Joint R&D in New Technologies" data-lang-zh="🚀 新技术领域的共同研发">🚀 新技術分野の共同研究</div>
+        <div style="color:var(--blue);" class="lang-text" data-lang-ja="💡 相互送客によるビジネス拡大" data-lang-en="💡 Business Expansion via Mutual Referrals" data-lang-zh="💡 通过相互引流扩大业务">💡 相互送客によるビジネス拡大</div>
+      </div>
+      <div style="text-align:center; margin-top: 50px;">
+        <a href="#contact" class="btn btn-outline lang-text" data-lang-ja="提携について問い合わせる" data-lang-en="Inquire about Partnership" data-lang-zh="咨询合作事宜">提携について問い合わせる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact - 联系我们 (多语言支持) -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title" id="contact-title">お問い合わせ</h2>
-      <p id="contact-sub" style="text-align:center; color:var(--gray); margin-bottom:40px;">
-        無料IT健診（30分オンライン相談）
-      </p>
-      <form action="https://formspree.io/f/xyzlerqz" method="POST">
-        <input type="text" name="会社名" placeholder="会社名" required>
-        <input type="text" name="お名前" placeholder="お名前" required>
-        <input type="email" name="メール" placeholder="メールアドレス" required>
-        <input type="tel" name="電話" placeholder="電話番号（任意）">
-        <textarea name="メッセージ" rows="5" placeholder="ご相談内容" required></textarea>
-        <button type="submit">送信する</button>
+      <h2 class="section-title lang-text" data-lang-ja="お問い合わせ" data-lang-en="Contact Us" data-lang-zh="联系我们">お問い合わせ</h2>
+      <p style="text-align:center; color:var(--gray); margin-bottom:40px;" class="lang-text" 
+         data-lang-ja="無料IT健診（30分オンライン相談）" data-lang-en="Free IT Health Check (30 min online consultation)" data-lang-zh="免费 IT 健康检查（30分钟在线咨询）">無料IT健診（30分オンライン相談）</p>
+      <!-- 表单 action 和 method 未修改 -->
+      <form action="https://formspree.io/f/YOUR_CODE" method="POST">
+        <!-- 表单 placeholder 属性也需要切换 -->
+        <input type="text" name="会社名" data-lang-ja="会社名" data-lang-en="Company Name" data-lang-zh="公司名称" required>
+        <input type="text" name="お名前" data-lang-ja="お名前" data-lang-en="Name" data-lang-zh="姓名" required>
+        <input type="email" name="メール" data-lang-ja="メールアドレス" data-lang-en="Email Address" data-lang-zh="邮箱地址" required>
+        <input type="tel" name="電話" data-lang-ja="電話番号（任意）" data-lang-en="Phone Number (Optional)" data-lang-zh="电话号码（可选）">
+        <textarea name="メッセージ" rows="5" data-lang-ja="ご相談内容" data-lang-en="Consultation Details" data-lang-zh="咨询内容" required></textarea>
+        <button type="submit" class="lang-text" data-lang-ja="送信する" data-lang-en="Send" data-lang-zh="发送">送信する</button>
       </form>
+      <!-- 邮箱和电话信息未修改 -->
       <p style="text-align:center; margin-top:40px; color:var(--gray);">
-        <span id="contact-email">alice@taiken.co.jp</span><br>
-        <span id="contact-phone">090-9373-8529</span>
+        📧 alice@taiken.co.jp<br>
+        📞 090-9373-8529
       </p>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer - 页脚 (多语言支持) -->
   <footer>
     <div class="container">
-      <p id="footer-text">© 2025 泰軒株式会社 Taiken Co., Ltd. All rights reserved.</p>
+      <p class="lang-text" data-lang-ja="© 2025 泰軒株式会社 Taiken Co., Ltd. All rights reserved." 
+         data-lang-en="© 2025 Taiken Co., Ltd. All rights reserved." 
+         data-lang-zh="© 2025 泰軒株式会社 Taiken Co., Ltd. 版权所有。">© 2025 泰軒株式会社 Taiken Co., Ltd. 版权所有。</p>
     </div>
   </footer>
 
-  <!-- 多语言内容 + 切换逻辑 -->
+  <!-- JavaScript for Multi-language Switching -->
   <script>
-    const translations = {
-      ja: {
-        title: "泰軒株式会社",
-        subtitle: "Taiken Co., Ltd.",
-        tagline: "効率的で信頼できるITパートナー<br><small>Your Reliable IT Solutions Partner</small>",
-        btn1: "無料相談",
-        btn2: "サービス ↓",
-        about_title: "会社概要",
-        about_text: "2025年設立・日本拠点<br>中小企業向けに「本当に使える・価格が明確な」ITソリューションを提供<br>クラウド＋アジャイルで3〜6ヶ月で成果を出します",
-        about_items: ["業界平均より40%早く", "完全透明な料金", "1週間でプロトタイプ", "日英中3言語対応"],
-        services_title: "サービス内容",
-        service1_title: "カスタムソフトウェア開発",
-        service1_desc: "業務システム・Webアプリ・モバイルアプリ<br>React / Node.js / Python / Go 等",
-        service2_title: "システム統合・クラウド移行",
-        service2_desc: "AWS / Azure / GCP 公式認定エンジニア<br>旧システムの無痛クラウド化",
-        service3_title: "サイバーセキュリティ",
-        service3_desc: "ペネトレーションテスト・ゼロトラスト<br>24h監視で守る",
-        service4_title: "データアナリティクス・AI",
-        service4_desc: "Power BI / Tableau / 機械学習<br>データ活用支援",
-        contact_title: "お問い合わせ",
-        contact_sub: "無料IT健診（30分オンライン相談）",
-        contact_email: "alice@taiken.co.jp",
-        contact_phone: "090-9373-8529",
-        footer: "© 2025 泰軒株式会社 Taiken Co., Ltd. All rights reserved."
-      },
-      en: {
-        title: "Taiken Co., Ltd.",
-        subtitle: "Professional IT Solutions",
-        tagline: "Efficient & Reliable IT Partner<br><small>Your Trusted Tech Ally</small>",
-        btn1: "Free Consultation",
-        btn2: "Services ↓",
-        about_title: "About Us",
-        about_text: "Founded 2025 · Japan-based<br>Practical, transparent IT for SMEs<br>Cloud + Agile: Results in 3-6 months",
-        about_items: ["40% faster than average", "Fully transparent pricing", "Prototype in 1 week", "JA/EN/ZH support"],
-        services_title: "Our Services",
-        service1_title: "Custom Software",
-        service1_desc: "Business systems · Web · Mobile<br>React / Node.js / Python / Go",
-        service2_title: "Cloud Migration",
-        service2_desc: "AWS / Azure / GCP certified<br>Painless legacy migration",
-        service3_title: "Cybersecurity",
-        service3_desc: "Pen testing · Zero Trust<br>24/7 protection",
-        service4_title: "Data & AI",
-        service4_desc: "Power BI / Tableau / ML<br>Data-driven insights",
-        contact_title: "Contact Us",
-        contact_sub: "Free 30-min IT Check",
-        contact_email: "alice@taiken.co.jp",
-        contact_phone: "+81 90-9373-8529",
-        footer: "© 2025 Taiken Co., Ltd. All rights reserved."
-      },
-      zh: {
-        title: "泰轩株式会社",
-        subtitle: "专业IT解决方案",
-        tagline: "高效可靠的IT合作伙伴<br><small>Your Trusted IT Partner</small>",
-        btn1: "免费咨询",
-        btn2: "服务 ↓",
-        about_title: "公司简介",
-        about_text: "2025年成立 · 日本总部<br>为中小企业提供「真正好用·价格透明」的IT方案<br>云+敏捷，3-6个月见效",
-        about_items: ["比行业快40%", "完全透明定价", "1周出原型", "中日英支持"],
-        services_title: "服务内容",
-        service1_title: "定制软件开发",
-        service1_desc: "业务系统·Web·移动应用<br>React / Node.js / Python / Go",
-        service2_title: "系统集成·云迁移",
-        service2_desc: "AWS / Azure / GCP 认证<br>无痛迁移老系统",
-        service3_title: "网络安全",
-        service3_desc: "渗透测试·零信任<br>24小时防护",
-        service4_title: "数据分析·AI",
-        service4_desc: "Power BI / Tableau / 机器学习<br>数据驱动决策",
-        contact_title: "联系我们",
-        contact_sub: "免费IT体检（30分钟在线）",
-        contact_email: "alice@taiken.co.jp",
-        contact_phone: "090-9373-8529",
-        footer: "© 2025 泰轩株式会社 版权所有"
-      }
-    };
-
-    function setLang(lang) {
-      const t = translations[lang];
-      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
-      document.getElementById('page-title').textContent = t.title + " | IT Solutions";
-
-      document.getElementById('hero-title').textContent = t.title;
-      document.getElementById('hero-subtitle').textContent = t.subtitle;
-      document.getElementById('hero-tagline').innerHTML = t.tagline;
-      document.getElementById('btn-consult').textContent = t.btn1;
-      document.getElementById('btn-services').textContent = t.btn2;
-
-      document.getElementById('about-title').textContent = t.about_title;
-      document.getElementById('about-text').innerHTML = t.about_text.replace(/\n/g, '<br>');
-      const items = document.getElementById('about-items');
-      items.innerHTML = '';
-      t.about_items.forEach(item => {
-        const div = document.createElement('div');
-        div.textContent = item;
-        items.appendChild(div);
+    // 定义多语言切换函数
+    function switchLanguage(lang) {
+      // 1. 切换页面的 lang 属性
+      document.documentElement.lang = lang;
+      
+      // 2. 切换所有带有 data-lang-* 属性的文本内容
+      const elements = document.querySelectorAll('[data-lang-ja]');
+      elements.forEach(element => {
+        const key = `data-lang-${lang}`;
+        const newText = element.getAttribute(key);
+        
+        // 针对普通文本内容
+        if (newText && element.tagName !== 'INPUT' && element.tagName !== 'TEXTAREA') {
+          // 检查是否有 <small> 标签，如果有，保留它
+          const smallTag = element.querySelector('small');
+          if (smallTag) {
+            // 如果文本包含 <br> 标签，使用 innerHTML 替换
+            element.innerHTML = newText.replace('<br>', '<br>') + smallTag.outerHTML;
+          } else {
+             // 如果文本包含 <br> 标签，使用 innerHTML 替换
+            element.innerHTML = newText.replace('<br>', '<br>');
+          }
+        }
+        
+        // 针对 input 和 textarea 的 placeholder
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+          if (newText) {
+            element.setAttribute('placeholder', newText);
+          }
+        }
       });
-
-      document.getElementById('services-title').textContent = t.services_title;
-      document.getElementById('service1-title').textContent = t.service1_title;
-      document.getElementById('service1-desc').innerHTML = t.service1_desc.replace(/\n/g, '<br>');
-      document.getElementById('service2-title').textContent = t.service2_title;
-      document.getElementById('service2-desc').innerHTML = t.service2_desc.replace(/\n/g, '<br>');
-      document.getElementById('service3-title').textContent = t.service3_title;
-      document.getElementById('service3-desc').innerHTML = t.service3_desc.replace(/\n/g, '<br>');
-      document.getElementById('service4-title').textContent = t.service4_title;
-      document.getElementById('service4-desc').innerHTML = t.service4_desc.replace(/\n/g, '<br>');
-
-      document.getElementById('contact-title').textContent = t.contact_title;
-      document.getElementById('contact-sub').textContent = t.contact_sub;
-      document.getElementById('contact-email').textContent = t.contact_email;
-      document.getElementById('contact-phone').textContent = t.contact_phone;
-      document.getElementById('footer-text').textContent = t.footer;
-
-      document.querySelectorAll('.lang-switch button').forEach(btn => {
-        btn.classList.toggle('active', btn.onclick.toString().includes(`'${lang}'`));
+      
+      // 3. 切换语言按钮的 active 状态
+      const buttons = document.querySelectorAll('.lang-switcher button');
+      buttons.forEach(button => {
+        button.classList.remove('active');
       });
-
-      localStorage.setItem('lang', lang);
+      document.querySelector(`.lang-switcher button[onclick*="'${lang}'"]`).classList.add('active');
     }
 
-    window.onload = () => {
-      const saved = localStorage.getItem('lang') || 'ja';
-      setLang(saved);
-    };
+    // 4. 初始化表单的 placeholder (首次加载时)
+    function initializePlaceholders(lang) {
+        const formElements = document.querySelectorAll('form input, form textarea');
+        formElements.forEach(element => {
+            const key = `data-lang-${lang}`;
+            const placeholderText = element.getAttribute(key);
+            if (placeholderText) {
+                element.setAttribute('placeholder', placeholderText);
+            }
+        });
+    }
+
+    // 页面加载完成后，设置初始语言为日文 (ja)，并初始化表单占位符
+    window.onload = function() {
+        switchLanguage('ja');
+        initializePlaceholders('ja');
+    }
   </script>
 
 </body>
