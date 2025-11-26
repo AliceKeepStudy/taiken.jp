@@ -184,7 +184,7 @@
     #services {
         position: relative;
         background: linear-gradient(rgba(15, 23, 42, 0.93), rgba(15, 23, 42, 0.98)),
-                    url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=2200&q=90');
+                    url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=2200&q=90');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -201,19 +201,6 @@
 		background-attachment: fixed;
 		padding: 120px 0;
 	}
-	
-	
-    #services::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: radial-gradient(circle at center, rgba(15,23,42,0.15) 0%, rgba(15,23,42,0.85) 100%);
-        z-index: 1;
-    }
-    #services > .container {
-        position: relative;
-        z-index: 2;
-    }
 
     #news {
         position: relative !important;
@@ -225,18 +212,59 @@
         padding: 120px 0 !important;
         overflow: hidden !important;
     }
-    #news::before {
-        content: '' !important;
-        position: absolute !important;
-        top: 0; left: 0; width: 100%; height: 100% !important;
-        background: radial-gradient(circle at center, 
-                    rgba(15,23,42,0.3) 0%, 
-                    rgba(15,23,42,0.92) 100%) !important;
-        z-index: 1 !important;
+	
+	#recruit {
+		position: relative;
+		background: linear-gradient(rgba(15,23,42,0.88), rgba(15,23,42,0.94)),
+					url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2200&q=90');
+		background-size: cover;
+		background-position: center top 20%;   /* 稍微往上偏，让人能看到更多桌面 */
+		background-attachment: fixed;
+		padding: 140px 0;
+	}
+
+	/* 6 パートナー Partner：玻璃幕墙会议室（显得开放、愿意合作） */
+	#partner {
+		position: relative;
+		background: linear-gradient(rgba(15,23,42,0.88), rgba(15,23,42,0.94)),
+					url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=2200&q=90');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		padding: 120px 0;
+	}
+
+	/* 7 お問い合わせ Contact：纯深色 + 极轻微光晕（突出表单） */
+	#contact {
+		position: relative;
+		background: linear-gradient(rgba(15,23,42,0.96), rgba(15,23,42,0.99)),
+					url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=2200&q=90');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		padding: 120px 0;
+	}
+	
+    #services::before,
+	#news::before,
+	#recruit::before,
+	#partner::before,
+	#contact::before
+	{
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at center, rgba(15,23,42,0.15) 0%, rgba(15,23,42,0.85) 100%);
+        z-index: 1;
     }
-    #news > .container {
-        position: relative !important;
-        z-index: 2 !important;
+    #services > .container,
+	#news > .container,
+	#recruit > .container,
+	#partner > .container,
+	#contact > .container
+	{
+        position: relative;
+        z-index: 2;
     }
 
     /* Ensure content is above the overlay */
@@ -292,7 +320,6 @@
     }
 
     /* Contact Form 样式 */
-    #contact { background: var(--dark); }
     form { max-width: 600px; margin: 0 auto; display: grid; gap: 16px; }
     input, textarea {
       width: 100%; padding: 14px; border: 1px solid #475569; border-radius: 8px;
@@ -415,11 +442,6 @@
           <h3 class="lang-text" data-lang-ja="マネージドセキュリティサービス" data-lang-en="Managed Security Service (MSS)" data-lang-zh="托管安全服务（MSS）">マネージドセキュリティサービス</h3>
           <p class="lang-text" data-lang-ja="24時間体制のセキュリティ監視、脆弱性診断、ゼロトラストアーキテクチャ設計。" data-lang-en="24/7 monitoring, vulnerability assessment, Zero Trust architecture design." data-lang-zh="24小时安全监控、漏洞诊断、零信任（Zero Trust）架构设计。">24時間体制のセキュリティ監視、脆弱性診断、ゼロトラストアーキテクチャ設計。</p>
         </div>
-        <!-- Card 4: 数据驱动 -->
-        <div class="card">
-          <h3 class="lang-text" data-lang-ja="データ駆動型経営支援" data-lang-en="Data-Driven Management Support" data-lang-zh="数据驱动运营支持">データ駆動型経営支援</h3>
-          <p class="lang-text" data-lang-ja="BIツール (Power BI/Tableau) 導入、AI・機械学習を用いたデータ分析と活用。" data-lang-en="BI tools (Power BI/Tableau) implementation, data analysis using AI/ML." data-lang-zh="BI 工具 (Power BI/Tableau) 部署、利用 AI/机器学习进行数据分析与应用。">BIツール (Power BI/Tableau) 導入、AI・機械学習を用いたデータ分析と活用。</p>
-        </div>
       </div>
     </div>
   </section>
@@ -429,16 +451,8 @@
     <div class="container">
       <h2 class="section-title lang-text" data-lang-ja="ニュース・実績 (News & Case Study)" data-lang-en="News & Case Study" data-lang-zh="新闻・业绩 (News & Case Study)">ニュース・実績 (News & Case Study)</h2>
       <div style="max-width: 800px; margin: 0 auto;">
-          <div class="news-item">
-              <p style="color:var(--gray);">2025.11.24</p>
-              <p><a href="#" class="lang-text" data-lang-ja="【実績】〇〇業界向け SaaS 開発プロジェクト完了" data-lang-en="[Case] SaaS Development Project for XX Industry Completed" data-lang-zh="【成果】面向〇〇行业的 SaaS 开发项目完成">【実績】〇〇業界向け SaaS 開発プロジェクト完了</a></p>
-          </div>
-          <div class="news-item">
-              <p style="color:var(--gray);">2025.11.01</p>
-              <p><a href="#" class="lang-text" data-lang-ja="企業向け「無料IT健診」相談件数が100件を突破" data-lang-en="Free IT Health Check consultations exceeded 100 cases" data-lang-zh="面向企业的「免费 IT 健康检查」咨询量突破100件">企業向け「無料IT健診」相談件数が100件を突破</a></p>
-          </div>
           <div class="news-item" style="border-bottom:none;">
-              <p style="color:var(--gray);">2025.10.15</p>
+              <p style="color:var(--gray);">2025.11.16</p>
               <p><a href="#" class="lang-text" data-lang-ja="役員体制の変更に関するお知らせ" data-lang-en="Notice of change in executive structure" data-lang-zh="关于董事会人事变动的通知">役員体制の変更に関するお知らせ</a></p>
           </div>
       </div>
@@ -449,7 +463,7 @@
   </section>
 
   <!-- Recruit - 新增招聘板块 (多语言支持) -->
-  <section id="recruit" style="background:var(--dark);">
+  <section id="recruit">
     <div class="container">
       <h2 class="section-title lang-text" data-lang-ja="採用情報 (Recruit)" data-lang-en="Recruit" data-lang-zh="招聘信息 (Recruit)">採用情報 (Recruit)</h2>
       <p style="text-align:center; max-width:700px; margin:0 auto 50px; font-size: 18px;" class="lang-text" 
